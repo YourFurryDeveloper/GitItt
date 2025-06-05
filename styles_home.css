@@ -83,3 +83,32 @@ h1, h2 {
 #submitbtn:active {
     background-color: rgb(57, 125, 50);
 }
+
+#threadlink {
+    text-decoration: none;
+    display: inline-block;
+    margin: 15px;
+}
+
+#threadcontainer {
+    background-color: rgb(41, 46, 52);
+    border-radius: 10px;
+    width: fit-content;
+    height: 100px;
+    padding-right: 30px;
+}
+
+#threadname {
+    padding: 10px;
+}
+
+#threaddesc {
+    color: rgb(179, 179, 179);
+    padding-left: 10px;
+    margin-top: -15px;
+}
+
+#recthreadcontainer {
+    display: flex;
+    justify-content: center;
+}
