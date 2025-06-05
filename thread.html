@@ -2,11 +2,11 @@
 
 <html>
     <head>
-        <title>GitItt</title>
-        <link rel="stylesheet" href="styles_home.css">
+        <title>GitItt | Thread</title>
+        <link rel="stylesheet" href="styles_thread.css">
     </head>
 
-    <body>
+    <body onload="fetchData()">
         <div id="topbar">
             <p id="sitename">GitItt</p>
             <nav id="topnav">
@@ -16,16 +16,15 @@
         </div>
         <br>
         <br>
-        <div id="sectionbox">
-            <h2>Create or goto thread</h2>
-            <input type="text" id="inp_threadname" placeholder="Thread name...">
-            <button id="submitbtn">Create/goto thread</button>
-        </div>
+        <h1 id="threadname"></h1>
+        <div class="giscus"></div>
 
         <script>
-            function gotoThread() {
-                threadName = document.getElementById("inp_threadname").value;
-                document.location.href = `thread.html?thread=${threadName}`
+            function fetchData() {
+                const params = new URLSearchParams(window.location.search);
+                const threadname = params.get("thread");
+
+                document.getElementById("threadname").innerHTML = threadname;
             }
         </script>
     </body>
