@@ -25,6 +25,7 @@
         <script>
             function gotoThread() {
                 threadName = document.getElementById("inp_threadname").value;
+                threadName = threadName.toLowerCase();
                 document.location.href = `thread.html?thread=${threadName}`
             }
         </script>
