@@ -19,9 +19,9 @@
         <br>
         <br>
         <div id="threadinfo">
-            <input id="threadsearch" type="text" placeholder="Search">
             <h1 id="threadname"></h1>
         </div>
+        <br>
         <div class="giscus" id="giscus"></div>
 
         <script>
@@ -30,50 +30,30 @@
                 const threadname = params.get("thread");
 
                 document.getElementById("threadname").innerHTML = `G/${threadname}`;
-                document.getElementById("threadsearch").setAttribute("placeholder", `Search G/${threadname}...`);
                 document.title = `GitItt | ${threadname}`
+
+                imageExists(`https://yourfurrydeveloper.github.io/GitItt/banner_imgs/${threadname}.png`, function(exists) {
+                    if (exists) {
+                        document.getElementById("threadinfo").style.backgroundImage = `url('https://yourfurrydeveloper.github.io/GitItt/banner_imgs/${threadname}.png')`
+                    }
+                });
+
+                imageExists(`https://yourfurrydeveloper.github.io/GitItt/banner_imgs/${threadname}.jpg`, function(exists) {
+                    if (exists) {
+                        document.getElementById("threadinfo").style.backgroundImage = `url('https://yourfurrydeveloper.github.io/GitItt/banner_imgs/${threadname}.jpg')`
+                    }
+                });
 
                 loadGiscus();
             }
 
-            function searchInThread(searchString) {
-                let iframe = document.querySelectorAll("iframe.giscus-frame");
-                iframe = iframe[0];
-                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-
-                if (!iframeDoc) {
-                    console.error('Cannot access iframe content.');
-                    return;
-                }
-
-                const elements = iframeDoc.body.getElementsByTagName('*');
-                const matches = [];
-
-                // Clear previous highlights
-                for (let el of elements) {
-                    el.style.backgroundColor = '';
-                }
-
-                for (let el of elements) {
-                    if (el.innerText && el.innerText.toLowerCase().includes(searchString.toLowerCase())) {
-                        el.style.backgroundColor = 'yellow'; // Highlight found elements
-                        matches.push(el);
-                    }
-                }
-
-                if (matches.length === 0) {
-                    console.log('No matches found.');
-                } else {
-                    console.log(`Found ${matches.length} matching elements.`);
-                }
-
-                if (matches.length > 0) {
-                    matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-
-                return matches; // Return found elements if needed
+            function imageExists(url, callback) {
+                const img = new Image();
+                img.onload = () => callback(true);
+                img.onerror = () => callback(false);
+                img.src = url;
             }
+
 
             function loadGiscus() {
                 const giscusContainer = document.getElementById('giscus');
@@ -97,11 +77,6 @@
 
                 giscusContainer.appendChild(script);
             }
-
-            const threadSearchBox = document.getElementById("threadsearch");
-            threadSearchBox.addEventListener("input", function() {
-                searchInThread(threadSearchBox.value);
-            })
         </script>
     </body>
 </html>

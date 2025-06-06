@@ -59,6 +59,7 @@ h1, h2 {
 }
 
 #threadname {
+    padding-top: 70px;
     padding-left: 15px;
     display: block;
     float: bottom;
