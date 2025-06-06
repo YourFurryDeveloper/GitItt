@@ -51,8 +51,36 @@ h1, h2 {
     color: white;
 }
 
+#threadinfo {
+    border-radius: 10px;
+    background-color: rgb(41, 46, 52);
+    height: 130px;
+    margin-bottom: 15px;
+}
+
 #threadname {
-    text-align: center;
+    padding-left: 15px;
+    display: block;
+    float: bottom;
+}
+
+#threadsearch {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 98%;
+    height: 35px;
+    padding-left: 10px;
+    background-color: #0E1113;
+    outline: 1px white;
+    border-radius: 20px;
+    border: 1px solid gray;
+    color: white;
+    margin: 10px;
+}
+
+#threadsearch:hover {
+    background-color: #202629;
 }
 
 #sectionbox {

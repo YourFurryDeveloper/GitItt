@@ -25,9 +25,9 @@
 
         <br>
 
-        <div id="sectionbox" style="position: relative; width: 100%;">
-            <h2>GitHub Discussions page</h2>
-            <iframe id="discussionspageembed" src="https://github.com/YourFurryDeveloper/GitItt/discussions"></iframe>
+        <div id="sectionbox">
+            <h2>Reccomended previews</h2>
+            <div id="giscus-coding">
         </div>
 
         <script>
@@ -35,6 +35,29 @@
                 threadName = document.getElementById("inp_threadname").value;
                 threadName = threadName.toLowerCase();
                 document.location.href = `thread.html?thread=${threadName}`
+            }
+
+            function loadGiscusPreviews() {
+                const giscusContainer = document.getElementById('giscus');
+
+                const script = document.createElement('script');
+                script.src = 'https://giscus.app/client.js';
+                script.setAttribute('data-repo', 'YourFurryDeveloper/GitItt');
+                script.setAttribute('data-repo-id', 'R_kgDOO2qTdA');
+                script.setAttribute('data-category', 'General');
+                script.setAttribute('data-category-id', 'DIC_kwDOO2qTdM4CrE_E');
+                script.setAttribute('data-mapping', 'title');
+                script.setAttribute('data-strict', '0');
+                script.setAttribute('data-reactions-enabled', '0');
+                script.setAttribute('data-emit-metadata', '0');
+                script.setAttribute('data-input-position', 'top');
+                script.setAttribute('data-theme', 'preferred_color_scheme');
+                script.setAttribute('data-lang', 'en');
+                script.setAttribute('data-loading', 'lazy');
+                script.setAttribute('crossorigin', 'anonymous');
+                script.async = true;
+
+                giscusContainer.appendChild(script);
             }
         </script>
     </body>

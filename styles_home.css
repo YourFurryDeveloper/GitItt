@@ -57,7 +57,7 @@ h1, h2 {
 
 #inp_threadname {
     outline: none;
-    width: 200px;
+    width: 235px;
     height: 27px;
     border-radius: 5px;
     background-color: transparent;
@@ -98,6 +98,10 @@ h1, h2 {
     padding-right: 30px;
 }
 
+#threadcontainer:hover {
+    background-color: rgb(52, 56, 61);
+}
+
 #threadname {
     padding: 10px;
 }
@@ -111,13 +115,4 @@ h1, h2 {
 #recthreadcontainer {
     display: flex;
     justify-content: center;
-}
-
-#discussionspageembed {
-    border: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 500px;
 }

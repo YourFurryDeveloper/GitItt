@@ -17,7 +17,11 @@
         </div>
         <br>
         <br>
-        <h1 id="threadname"></h1>
+        <br>
+        <div id="threadinfo">
+            <input id="threadsearch" type="text" placeholder="Search">
+            <h1 id="threadname"></h1>
+        </div>
         <div class="giscus" id="giscus"></div>
 
         <script>
@@ -25,10 +29,50 @@
                 const params = new URLSearchParams(window.location.search);
                 const threadname = params.get("thread");
 
-                document.getElementById("threadname").innerHTML = threadname;
+                document.getElementById("threadname").innerHTML = `G/${threadname}`;
+                document.getElementById("threadsearch").setAttribute("placeholder", `Search G/${threadname}...`);
                 document.title = `GitItt | ${threadname}`
 
                 loadGiscus();
+            }
+
+            function searchInThread(searchString) {
+                let iframe = document.querySelectorAll("iframe.giscus-frame");
+                iframe = iframe[0];
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+
+                if (!iframeDoc) {
+                    console.error('Cannot access iframe content.');
+                    return;
+                }
+
+                const elements = iframeDoc.body.getElementsByTagName('*');
+                const matches = [];
+
+                // Clear previous highlights
+                for (let el of elements) {
+                    el.style.backgroundColor = '';
+                }
+
+                for (let el of elements) {
+                    if (el.innerText && el.innerText.toLowerCase().includes(searchString.toLowerCase())) {
+                        el.style.backgroundColor = 'yellow'; // Highlight found elements
+                        matches.push(el);
+                    }
+                }
+
+                if (matches.length === 0) {
+                    console.log('No matches found.');
+                } else {
+                    console.log(`Found ${matches.length} matching elements.`);
+                }
+
+                if (matches.length > 0) {
+                    matches[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+
+                return matches; // Return found elements if needed
             }
 
             function loadGiscus() {
@@ -53,6 +97,11 @@
 
                 giscusContainer.appendChild(script);
             }
+
+            const threadSearchBox = document.getElementById("threadsearch");
+            threadSearchBox.addEventListener("input", function() {
+                searchInThread(threadSearchBox.value);
+            })
         </script>
     </body>
 </html>
