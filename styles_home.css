@@ -96,6 +96,7 @@ h1, h2 {
     width: fit-content;
     height: 100px;
     padding-right: 30px;
+    flex: 1 1 calc(33.333% - 16px);
 }
 
 #threadcontainer:hover {
@@ -115,4 +116,5 @@ h1, h2 {
 #recthreadcontainer {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
